@@ -11,6 +11,9 @@ load_dotenv()
 client = openai.OpenAI()
 model = "gpt-3.5-turbo-16k"
 
+
+# Uncomment the code to create your assistant and thread before running code below
+
 # == Create our Assistant ==
 
 # perosnal_trainer_assistant = client.beta.assistants.create(
@@ -36,9 +39,6 @@ model = "gpt-3.5-turbo-16k"
 #     ]
 # )
 
-# thread_id = thread.id
-# print(thread_id)
-
 
 # ======== HardCode our ids =======
 assitant_id = "asst_jlEhP5rOL3oKODfAzZT90z7M"
@@ -47,12 +47,14 @@ thread_id = "thread_49LZVyz77Onrs6bt6i66CoTP"
 
 # # ======== Create a message =======
 
-message = "What are the best exercises to lose fat and gain lean muscle?"
+# message = "How many steps a day is realistic for weight loss?"
+user_message = input("Enter your message: ")
 message = client.beta.threads.messages.create(
     thread_id=thread_id,
     role="user",
-    content=message,
+    content=user_message,
 )
+
 
 # # == Run our Assistatnt ========
 
@@ -102,4 +104,17 @@ def wait_for_run_completion(client, thread_id, run_id, sleep_interval=5):
 
 
 # # === Run ===
-wait_for_run_completion(client=client, thread_id=thread_id, run_id=run.id)
+wait_for_run_completion(
+    client=client,
+    thread_id=thread_id,
+    run_id=run.id,
+)
+
+
+# === Steps --Logs ===
+
+run_step = client.beta.threads.runs.steps.list(
+    thread_id=thread_id,
+    run_id=run.id,
+)
+print(f"Run Steps: {run_step.data[0]}")
