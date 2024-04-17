@@ -11,5 +11,4 @@ The Python Personal Assistant is designed to help individuals streamline their d
 
 - Task Management: Automate scheduling, reminders, and task tracking.
 - Information Retrieval: Answer queries on a wide range of topics in real-time.
-- Communication: Send and receive emails or messages hands-free.
 - Customization: Tailor the assistant's behavior and responses to fit personal preferences.
